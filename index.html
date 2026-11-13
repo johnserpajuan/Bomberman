@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Blaster Arcade</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="arcade-cabinet">
+        <!-- SCREEN 1: START SCREEN -->
+        <div id="start-screen" class="game-screen active">
+            <h1 class="title">MATH BLASTER</h1>
+            <p class="subtitle">Shoot the correct answer bubbles!</p>
+            
+            <div class="form-group">
+                <label for="player-name">Player Name:</label>
+                <input type="text" id="player-name" placeholder="Enter your name..." maxlength="12" autocomplete="off">
+            </div>
+
+            <div class="form-group">
+                <label>Select Difficulty:</label>
+                <div class="diff-buttons">
+                    <button class="diff-btn active" data-diff="Easy">Easy</button>
+                    <button class="diff-btn" data-diff="Normal">Normal</button>
+                    <button class="diff-btn" data-diff="Fast">Fast</button>
+                </div>
+            </div>
+
+            <div class="menu-buttons">
+                <button class="btn primary-btn" id="start-game-btn">START GAME</button>
+                <button class="btn secondary-btn" id="how-to-play-btn">HOW TO PLAY</button>
+                <button class="btn secondary-btn" id="leaderboard-btn">TOP PLAYERS</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 2: INSTRUCTIONS SCREEN -->
+        <div id="instructions-screen" class="game-screen">
+            <h2>HOW TO PLAY</h2>
+            <div class="instructions-box">
+                <p>🎯 <strong>Objective:</strong> Read the question in the bottom box and shoot the falling bubble with the correct answer.</p>
+                <p>❤️ <strong>Lives:</strong> You have 3 lives. Missing the correct answer or shooting a wrong bubble costs a life.</p>
+                <p>📈 <strong>Progression:</strong> Clear 5 correct answers per level across 5 levels (25 total) to win!</p>
+                <p>⌨️ <strong>Controls:</strong></p>
+                <ul>
+                    <li><strong>Keyboard:</strong> A/D or Left/Right arrows to move, Space to fire.</li>
+                    <li><strong>Mouse:</strong> Move to aim, click to fire.</li>
+                    <li><strong>Touch:</strong> Drag to aim, tap the red FIRE button.</li>
+                </ul>
+            </div>
+            <button class="btn primary-btn" id="back-to-menu-btn">BACK TO MENU</button>
+        </div>
+
+        <!-- SCREEN 3: GAMEPLAY SCREEN -->
+        <div id="gameplay-screen" class="game-screen">
+            <div class="hud">
+                <div class="hud-left">
+                    <span>Score: <strong id="live-score">0</strong></span>
+                    <span>Lives: <strong id="live-hearts">❤️❤️❤️</strong></span>
+                </div>
+                <div class="hud-right">
+                    <span>Level: <strong id="live-level">1</strong></span>
+                    <span>Progress: <strong id="live-progress">0</strong>/5</span>
+                </div>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="gameCanvas" width="480" height="520"></canvas>
+            </div>
+
+            <div class="gameplay-bottom">
+                <div class="question-box" id="question-box">4 × 3 = ?</div>
+                <button class="fire-btn" id="fire-trigger-btn">FIRE</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 4: GAME OVER SCREEN -->
+        <div id="gameover-screen" class="game-screen">
+            <h2 id="gameover-title">GAME OVER</h2>
+            <p id="gameover-msg" class="gameover-msg">Good try!</p>
+            <div class="stats-card">
+                <p>Final Score: <span id="final-score">0</span></p>
+                <p>Leaderboard Rank: <span id="final-rank">-</span></p>
+            </div>
+            <div class="menu-buttons">
+                <button class="btn primary-btn" id="play-again-btn">PLAY AGAIN</button>
+                <button class="btn secondary-btn" id="menu-home-btn">MAIN MENU</button>
+            </div>
+        </div>
+
+        <!-- SCREEN 5: TOP PLAYERS SCREEN -->
+        <div id="leaderboard-screen" class="game-screen">
+            <h2>TOP PLAYERS</h2>
+            <div class="leaderboard-list" id="leaderboard-list">
+                <!-- Populated via JS -->
+            </div>
+            <button class="btn primary-btn" id="lb-back-btn">BACK TO MENU</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

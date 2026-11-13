@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Bomber Man</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="wrap">
+
+  <!-- ========== START SCREEN: game title, instructions, Start button ========== -->
+  <section id="startScreen" class="start">
+    <svg class="logo-bomb" viewBox="0 0 90 90" aria-hidden="true">
+      <circle cx="40" cy="52" r="29" fill="#2b1a55" stroke="#22103d" stroke-width="4"/>
+      <ellipse cx="30" cy="40" rx="9" ry="5.5" fill="#8b7bc6" transform="rotate(-35 30 40)"/>
+      <rect x="33" y="16" width="16" height="12" rx="3" fill="#a594dc" stroke="#22103d" stroke-width="4"/>
+      <path d="M45 16 Q54 4 68 10" fill="none" stroke="#22103d" stroke-width="9" stroke-linecap="round"/>
+      <path d="M45 16 Q54 4 68 10" fill="none" stroke="#f0d9a0" stroke-width="4" stroke-linecap="round"/>
+      <g transform="translate(70 10)">
+        <circle class="sp" r="9" fill="#ffd21f" stroke="#22103d" stroke-width="3"/>
+        <circle r="3.5" fill="#fff"/>
+      </g>
+    </svg>
+    <h1 class="title">Bomber<br>Man</h1>
+    <p class="tagline">Blast the bricks, outsmart the monsters, survive three levels.</p>
+    <button id="startBtn" class="btn primary big">Start game</button>
+    <p class="best-line">High score: <b id="startBest">0</b></p>
+
+    <div class="card howto">
+      <h2>How to play</h2>
+      <ul>
+        <li><span class="tag">Move</span><span>Arrow keys or <kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd>. On a phone or with a mouse, use the on-screen pad.</span></li>
+        <li><span class="tag">Bomb</span><span>Press <kbd>Space</kbd> or the bomb button. It explodes in a cross shape after two seconds.</span></li>
+        <li><span class="tag">Score</span><span>Brick +10, monster +100, level cleared +200.</span></li>
+        <li><span class="tag">Power-ups</span><span><i class="pu b">B</i> extra bomb, <i class="pu r">R</i> longer blast, <i class="pu s">S</i> more speed. Bricks sometimes drop them.</span></li>
+        <li><span class="tag">Win</span><span>Defeat every monster to clear a level. Clear all 3 levels to win.</span></li>
+        <li><span class="tag">Lose</span><span>You have 3 lives. Stay out of blasts, including your own, and away from monsters.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ========== GAME SCREEN ========== -->
+  <main id="gameScreen" hidden>
+    <!-- Score system display -->
+    <div class="hud">
+      <div class="stat"><span>Score</span><b id="hudScore">0</b></div>
+      <div class="stat"><span>High score</span><b id="hudBest">0</b></div>
+      <div class="stat"><span>Lives</span><b id="hudLives">&hearts;&hearts;&hearts;</b></div>
+      <div class="stat"><span>Level</span><b id="hudLevel">1/3</b></div>
+      <button id="muteBtn" class="icon-btn" aria-label="Turn sound off">&#128266;</button>
+    </div>
+
+    <div id="stage">
+      <canvas id="game" width="624" height="528" role="img" aria-label="Bomber Man game board"></canvas>
+      <div id="toast" aria-live="polite"></div>
+
+      <!-- ========== GAME OVER SCREEN: final result + Restart button ========== -->
+      <div id="over" class="overlay" role="dialog" aria-labelledby="overTitle" hidden>
+        <div id="overCard" class="over-card">
+          <h2 id="overTitle">Game over</h2>
+          <p id="overMsg"></p>
+          <div class="over-stats">
+            <div><span>Final score</span><b id="overScore">0</b></div>
+            <div><span>High score</span><b id="overBest">0</b></div>
+          </div>
+          <div id="newRecord" class="badge" hidden>New high score!</div>
+          <div class="btn-row">
+            <button id="restartBtn" class="btn primary">Play again</button>
+            <button id="menuBtn" class="btn">Menu</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Player controls: touch + mouse (keyboard works too) -->
+    <div class="controls">
+      <div class="dpad" aria-label="Direction pad">
+        <button class="d up" data-dir="up" aria-label="Move up"></button>
+        <button class="d left" data-dir="left" aria-label="Move left"></button>
+        <button class="d right" data-dir="right" aria-label="Move right"></button>
+        <button class="d down" data-dir="down" aria-label="Move down"></button>
+      </div>
+      <button id="bombBtn" class="bomb-btn" aria-label="Drop bomb">
+        <svg viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="18" cy="23" r="13" fill="#22103d"/>
+          <circle cx="13" cy="18" r="4" fill="#8b7bc6"/>
+          <path d="M24 10 Q29 3 36 6" fill="none" stroke="#f0d9a0" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="36" cy="6" r="3.5" fill="#ffd21f"/>
+        </svg>
+        Bomb
+      </button>
+    </div>
+  </main>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
